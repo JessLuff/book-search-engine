@@ -5,13 +5,16 @@ const { signToken } = require('../utils/auth');
 // Create the functions that fulfill the queries defined in `typeDefs.js`
 const resolvers = {
   Query: {
-    users: async () => {
-      // Get and return all documents from the classes collection
-      return User.find().populate('savedBooks');
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('savedBooks');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
+    /*
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('savedBooks');
-    },
+    }, */
     //Book
   },
   Mutation: {
@@ -37,18 +40,33 @@ const resolvers = {
 
       return { token, user };
     },
-    saveBook: async (parent, { description, title, bookId, image, link }) => {
-      const book = await Book.create({ description, title, bookId, image, link });
+    saveBook: async (parent, { author, description, title, bookId, image, link }, context) => {
+    if (context.user) {
+      const book = await Book.create({ author, description, title, bookId, image, link });
 
       await User.findOneAndUpdate(
-        { username: thoughtAuthor },
+        { _id: context.user._id },
         { $addToSet: { savedBooks: book.bookId } }
       );
 
       return User;
-    },
-    deleteBook: async (parent, { bookId }) => {
-      return User.findOneAndDelete({savedBooks: book.bookId });
+    }
+    throw new AuthenticationError('You need to be logged in!');
+  },
+    deleteBook: async (parent, { bookId }, context) => {
+      if (context.user) {
+        const book = await Book.findOneAndDelete({
+          _id: bookId,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedBooks: Book._id } }
+        );
+
+        return User;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };

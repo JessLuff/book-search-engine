@@ -7,13 +7,7 @@ BACK END
 
 
 FRONT END
-queries.js query GET_ME -> me query
-mutations.js
-    LOGIN_USER -> loginUser
-    ADD_USER -> addUser
-    SAVE_BOOK -> saveBook
-    REMOVE_BOOK -> removeBook
-App.js create Apollo Provider
+
 SearchBooks.js Use useMutation() hook to excecute SAVE_HOOK in handleSaveBook()
     Keep logic for save book ID in try...catch
 SavedBooks.js
@@ -45,6 +39,20 @@ Schemas Add:
 
 DONE FRONT END
 
-
+queries.js query GET_ME -> me query
+mutations.js
+    LOGIN_USER -> loginUser
+    ADD_USER -> addUser
+    SAVE_BOOK -> saveBook
+    REMOVE_BOOK -> removeBook
+App.js create Apollo Provider
 
 Exercises 1 & 12??
+
+Hi Mitch how are you today
+
+Is the sound og my keys too much
+
+Or is it coding ASMR
+
+Is this any better, this is annoying to cod ehtis way thoguht
