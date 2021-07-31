@@ -1,19 +1,43 @@
 const { gql } = require('apollo-server-express');
 
+// MAKE AUTHORS ARRAY
+
 const typeDefs = gql`
-  # Define which fields are accessible from the Class model
+
+  type Query {
+    me: [User]
+  }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    saveBook(description: String!, title: String!, bookId: ID!, image: String!, link: String!): User
+    removeBook(booktId: ID!): Book
+  }
+
   type User {
     _id: ID
     username: String
     email: String
-    password: String
-    savedBooks: [Book]
+    bookCount: Int
+    savedBooks: [bookSchema]
   }
 
-  # Define which queries the front end is allowed to make and what data is returned
-  type Query {
-    users: [User]
+  type Book {
+    bookId: ID
+    authors: [String]
+    description: String
+    title: String
+    image: String
+    link: String
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 `;
 
 module.exports = typeDefs;
+
+
