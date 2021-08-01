@@ -3,8 +3,8 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
-import { SAVE_BOOK } from '../../utils/mutations';
-import { GET_ME } from '../../utils/queries';
+import { SAVE_BOOK } from '../utils/mutations';
+import { GET_ME } from '../utils/queries';
 import { saveBook, searchGoogleBooks } from '../utils/API';
 //import { saveBook, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
