@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 
-import { getMe, deleteBook } from '../utils/API';
+//import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
+//import { removeBookId } from '../utils/localStorage';
 
 import { QUERY_USER, GET_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
+//import { remove } from '../../../server/models/User';
 
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
+  //const [userData, setUserData] = useState('');
+  const [removeBookId, { error }] = useMutation(REMOVE_BOOK, {
+    update(cache, { data: { removeBookId } }) {
+      try {
+        cache.writeQuery({
+          query: GET_ME,
+          data: { me: removeBookId },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
@@ -52,6 +66,15 @@ const SavedBooks = () => {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
+    try {
+      const { data } = await removeBookId(bookId);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+    /*
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -60,21 +83,22 @@ const SavedBooks = () => {
 
     try {
       //const response = await deleteBook(bookId, token);
-      const [removeBookId, { error }] = useMutation(REMOVE_BOOK);
+      
 
+      
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
 
       const updatedUser = await response.json();
-      setUserData(updatedUser);
+      //setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
 
     } catch (err) {
       console.error(err);
     }
-  };
+  };*/
 
   // if data isn't here yet, say so
   if (!userDataLength) {

@@ -33,11 +33,11 @@ const SignupForm = () => {
     }
 
     try {
-      const { data } = await addProfile({
+      const { data } = await addUser({
         variables: { ...userFormData },
       });
 
-      Auth.login(data.addProfile.token);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
