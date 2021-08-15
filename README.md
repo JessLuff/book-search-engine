@@ -1,58 +1,42 @@
-# book-search-engine
+# Sample README
 
-update auth in client
-Excuse me Past Jess wtf does this mean
+## Badges
 
-BACK END
+![Github license](https://img.shields.io/badge/license-APACHE-2.0-blue.svg)
 
+## Description
 
-FRONT END
+This project uses a GraphQL API with Apollo Server to allow a user to 
 
-SearchBooks.js Use useMutation() hook to excecute SAVE_BOOK in handleSaveBook()
-    Keep logic for save book ID in try...catch
-SavedBooks.js
-    Use useQuery() hook to execute GET_ME save to variable userData, instead of useEffect() for UserData
-    Use useMutation() hook to execute REMOVE_BOOK mutation in handleDeleteBook() instead of deleteBook() KEEP removeBookId() FUNCTION
-SignupForm.js
-    Replace addUser() with ADD_USER mutation
-LoginForm.js
-    replace loginUser() with LOGIN_USER
+## Table of Contents
 
-DONE BACK END
-server.js add Apollo
-auth.js Update for GraphQL
-Schemas:
-    index.js export TypeDefs and Resolvers
-Schemas Add:
-    resolvers.js (take from user-controller)
-    typeDefs.js (CURRENT WORK)
-    Mutations
-        login: returns Auth
-        addUser: input username, email, password, returns Auth
-        saveBook: import desc, title, bookId, image, link, returns User (use Input type??)
-        removeBook: import bookId, returns 
-    Auth
-        token
-        user
-    User and Book types (more deets in spec)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Questions](#questions)
 
+## Installation
 
-DONE FRONT END
+To install dependancies, run the following command:
 
-queries.js query GET_ME -> me query
-mutations.js
-    LOGIN_USER -> loginUser
-    ADD_USER -> addUser
-    SAVE_BOOK -> saveBook
-    REMOVE_BOOK -> removeBook
-App.js create Apollo Provider
+npm i
 
-Exercises 1 & 12??
+## Usage
 
-Hi Mitch how are you today
+This project demonstrates
 
-Is the sound og my keys too much
+## License
 
-Or is it coding ASMR
+This project is licensed under the MIT license.
 
-Is this any better, this is annoying to cod ehtis way thoguht
+## Contributing
+
+This project can be freely contributed to
+
+## Questions
+
+If you have any questions about the repo or the project, you can contact me at jessica.luff@outlook.com.
+You can find more of my work at [JessLuff](https://github.com/JessLuff/).
+
+![Screenshot](/screenshots/searchscreenshot.png)
