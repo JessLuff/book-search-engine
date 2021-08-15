@@ -27,17 +27,18 @@ const SavedBooks = () => {
     },
   });
 
-  // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
+
 
   // Instead, use the `useQuery()` Hook to execute the `GET_ME` query on load and save
   // it to a variable named `userData`.
 
   const { username: userParam } = useParams();
 
-  const { loading, userData } = useQuery(userParam ? QUERY_USER : GET_ME, {
+  const { loading, userData } = useQuery(GET_ME, {
     variables: { username: userParam },
   });
+
+  const userDataLength = Object.keys(userData).length;
 
   /* useEffect(() => {
     const getUserData = async () => {
