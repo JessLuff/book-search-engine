@@ -1,12 +1,8 @@
 # Sample README
 
-## Badges
-
-![Github license](https://img.shields.io/badge/license-APACHE-2.0-blue.svg)
-
 ## Description
 
-This project uses a GraphQL API with Apollo Server to allow a user to 
+This project uses a GraphQL API with Apollo Server to allow a user to log in, search and save books from Google Books.
 
 ## Table of Contents
 
@@ -21,10 +17,6 @@ This project uses a GraphQL API with Apollo Server to allow a user to
 To install dependancies, run the following command:
 
 npm i
-
-## Usage
-
-This project demonstrates
 
 ## License
 
